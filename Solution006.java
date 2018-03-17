@@ -20,14 +20,6 @@ public class Solution006 {
     	int j = 0;
     	int[] C = new int[N];
     	for(int k = 0; k < N; k++){
-    		System.out.println();
-    		System.out.print(k);
-    		System.out.print(" ");
-    		System.out.print(i);
-    		System.out.print(" ");
-    		System.out.print(j);
-    		System.out.println();
-  
     		if(i > A.length - 1){
     			C[k] = B[j];
     			j++;
