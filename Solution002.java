@@ -20,10 +20,7 @@ public class Solution002 {
     	while(t <= n){
     		count += n / t;
     		n /= 5;
-    	}
-    	
-
-    	
+    	} 	
     	return count;
     }
 }
