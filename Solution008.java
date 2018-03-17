@@ -18,7 +18,6 @@ public class Solution008 {
     	for(int i = 0; i < N; i++){
     		str2[i] = str[i];
     	}
-//    	int off = offset % N;
     	
     	for(int i = 0; i < N; i++){
     		if(offset != 0){
