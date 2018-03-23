@@ -9,7 +9,6 @@ public class Solution002 {
 		System.out.println(trailingZeros(100));
 	}
     public static long trailingZeros(long n) {
-        // write your code here, try to do it without arithmetic operators.
     	
     	// 分解成2*5来算 统计5的个数就可以
     	// 25 中有2个5
