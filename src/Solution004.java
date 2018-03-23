@@ -10,7 +10,7 @@ public class Solution004 {
 		System.out.println(count);
 	}
     public static int nthUglyNumber(int n) {
-        // write your code here
+
     	int[] num = new int[n];
     	// 添加第一个丑数
     	num[0] = 1;
