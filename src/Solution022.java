@@ -1,4 +1,4 @@
-public class Solution022 {}
+package src;
 /*
 public class Solution022 {
     // @param nestedList a list of NestedInteger
