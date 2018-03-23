@@ -11,6 +11,7 @@ public class Solution014 {
 		int result = binarySearch(nums, 8);
 		System.out.println(result);
 	}
+	
     public static int binarySearch(int[] nums, int target) {  	
     	int start = 0;
     	int end = nums.length - 1;
