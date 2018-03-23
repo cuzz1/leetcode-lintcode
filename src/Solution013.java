@@ -7,7 +7,7 @@ public class Solution013 {
      * @return: a index to the first occurrence of target in source, or -1  if target is not part of source.
      */
     public int strStr(String source, String target) {
-        // write your code here
+    	
     	if(source == null || target == null){
     		return -1;
     	}
