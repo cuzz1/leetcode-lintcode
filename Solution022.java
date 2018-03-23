@@ -1,4 +1,5 @@
-
+public class Solution022 {}
+/*
 public class Solution022 {
     // @param nestedList a list of NestedInteger
     // @return a list of integer
@@ -15,3 +16,4 @@ public class Solution022 {
         return list;
     }
 }
+*/
