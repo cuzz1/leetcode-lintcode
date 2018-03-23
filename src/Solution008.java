@@ -9,9 +9,9 @@ public class Solution008 {
 	public static void main(String[] args) {
 		char[] str = {'a','b','c'};
 		rotateString(str, 4);
-		System.out.println(str);
-		
+		System.out.println(str);	
 	}
+	
     public static void rotateString(char[] str, int offset) {
         // write your code here
     	int N = str.length;
