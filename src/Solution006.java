@@ -15,7 +15,7 @@ public class Solution006 {
 		}
 	}
     public static int[] mergeSorteArray(int[] A, int[] B) {
-        // write your code here
+
     	int N = A.length + B.length;
     	int i = 0;
     	int j = 0;
