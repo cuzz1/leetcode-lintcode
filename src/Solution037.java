@@ -13,11 +13,7 @@ public class Solution037 {
         // write your code here
     	int a = number / 100;
     	int b = (number / 10) % 10;
-    	int c = number % 10;
-    	System.out.println(a);
-    	System.out.println(b);
-    	System.out.println(c);
-    	
+    	int c = number % 10;  	
     	int result = c * 100 + b * 10 + a;
     	return result;
     }
