@@ -22,14 +22,13 @@ public class Solution039 {
 		}
 		
 	}
+	
 	// 使用快速排序 复习一下
     public static void recoverRotatedSortedArray(List<Integer> nums) {
         // write your code here
     	sort(nums, 0, nums.size()-1);
     }
-    
-    
-    
+      
     private static void sort(List<Integer> nums, int start, int end) {
 		// TODO Auto-generated method stub
 		if(start > end){
@@ -39,6 +38,7 @@ public class Solution039 {
 		sort(nums, start, j-1);
 		sort(nums, j+1, end);
 	}
+    
 	private static int partition(List<Integer> nums, int start, int end){
   
     	int flag = nums.get(end);
@@ -51,10 +51,10 @@ public class Solution039 {
     		}
     	}
     	exch(nums, i, end);
-    	return i;
-    	
-    	
+    	return i;	
     }
+	
+	
 	private static void exch(List<Integer> nums, int i, int j) {
 		// TODO Auto-generated method stub
 		int temp = nums.get(i);
