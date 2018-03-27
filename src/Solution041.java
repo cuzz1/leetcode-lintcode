@@ -12,8 +12,7 @@ public class Solution041 {
 	}
     public static int maxSubArray(int[] nums) {
         // write your code here
-        int temp = 0;
- 
+        int temp = nums[0];
         for(int i = 0; i < nums.length; i++){
         	int addedNums = 0;
         	for(int j = i; j < nums.length; j++){
