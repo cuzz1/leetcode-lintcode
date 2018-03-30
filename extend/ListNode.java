@@ -1,10 +1,10 @@
 package extend;
 
 public class ListNode {
-	int x;
+	public int val;
 	public ListNode next;
 	public ListNode(int x){
-		this.x = x;
+		val = x;
 		next = null;
 	}
 }
