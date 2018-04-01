@@ -7,6 +7,10 @@ import java.util.Stack;
 import extend.TreeNode;
 
 public class Solution066 {
+	public static void main(String[] args) {
+		
+	}
+	
 	public List<Integer> preorderTraversal(TreeNode root) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		List<Integer> list = new ArrayList<Integer>();
@@ -21,10 +25,12 @@ public class Solution066 {
 			TreeNode node = stack.pop();
 			list.add(node.val);
 			
+			// 把右节点放入栈中
 			if (node.right != null) {
 				stack.push(node.right); 
 			}
 			
+			// 把左节点放入栈中
 			if (node.left != null) {
 				stack.push(node.left);
 			}
