@@ -21,7 +21,7 @@ public class Solution112 {
     		if (p.val == p.next.val) {
     			p.next = p.next.next;
     		} else {
-    			p = head.next;
+    			p = p.next;
     		}
     	}
     	return head;
