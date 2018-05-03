@@ -7,6 +7,7 @@ public class Solution003 {
      * @return: An integer denote the count of digit k in 1..n
      */
 	public static void main(String[] args) {
+		
 		int count = digitCounts(9, 99999);
 		System.out.println(count);
 	}
