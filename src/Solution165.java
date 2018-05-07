@@ -17,8 +17,8 @@ public class Solution165 {
     			node.next = l2;
     			l2 = l2.next;
     		}
-    	}
     	node = node.next;
+    	}
     	if (l1 != null) {
 			node.next = l1;
 		}
