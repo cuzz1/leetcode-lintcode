@@ -18,4 +18,3 @@ public class Solution372 {
     	node.next = node.next.next;
     }
 }
-}
