@@ -2,7 +2,7 @@ package src;
 
 import extend.ListNode;
 
-public class Slution173 {
+public class Solution173 {
 	/**
 	 * @param head: The first node of linked list.
 	 * @return: The head of linked list.
