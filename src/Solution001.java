@@ -7,7 +7,12 @@ public class Solution001 {
      * @return: The sum of a and b
      */
     public int aplusb(int a, int b) {
-        // write your code here
-    	return 0;
+    	while (b != 0) {
+    		int _a = a ^ b;
+    		int _b = (a & b) << 1;
+    		a = _a;
+    		b = _b;
+    	}
+    	return a;
     }
 }
