@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Stack;
 
 import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -23,24 +22,23 @@ public class Solution066 {
      * @param root: A Tree
      * @return: Preorder in ArrayList which contains node values.
      */
+    List<Integer> list = new ArrayList<Integer>();
+    
     public List<Integer> preorderTraversal(TreeNode root) {
         
-        List<Integer> list = new ArrayList<Integer>();
-        if (root == null) {
-            return list;
-        }
-        preorder(root, list);
+        preorder(root);
         return list;
     }
     
-    private void preorder(TreeNode root, List list) {
+    private void preorder(TreeNode root) {
+        
+        if (root == null) {
+            return;
+        }
+        
         list.add(root.val);
-        if (root.left != null) {
-            preorder(root.left, list);
-        }
-        if (root.right != null) {
-            preorder(root.right, list);
-        }
+        preorder(root.left);
+        preorder(root.right);
     }
 
     
