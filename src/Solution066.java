@@ -6,35 +6,42 @@ import java.util.Stack;
 
 import extend.TreeNode;
 
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
 public class Solution066 {
-	public static void main(String[] args) {
-		
-	}
-	
-	public List<Integer> preorderTraversal(TreeNode root) {
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		List<Integer> list = new ArrayList<Integer>();
-		
-		if (root == null) {
-			return list;
-		}
-		
-		// 先把跟节点放进去
-		stack.push(root);
-		while (!stack.empty()) {
-			TreeNode node = stack.pop();
-			list.add(node.val);
-			
-			// 把右节点放入栈中
-			if (node.right != null) {
-				stack.push(node.right); 
-			}
-			
-			// 把左节点放入栈中
-			if (node.left != null) {
-				stack.push(node.left);
-			}
-		}
-		return list;
-	}
+    /**
+     * @param root: A Tree
+     * @return: Preorder in ArrayList which contains node values.
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        
+        List<Integer> list = new ArrayList<Integer>();
+        if (root == null) {
+            return list;
+        }
+        preorder(root, list);
+        return list;
+    }
+    
+    private void preorder(TreeNode root, List list) {
+        list.add(root.val);
+        if (root.left != null) {
+            preorder(root.left, list);
+        }
+        if (root.right != null) {
+            preorder(root.right, list);
+        }
+    }
+
+    
 }
