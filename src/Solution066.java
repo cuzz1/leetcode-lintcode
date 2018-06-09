@@ -39,7 +39,33 @@ public class Solution066 {
         list.add(root.val);
         preorder(root.left);
         preorder(root.right);
-    }
-
-    
+    } 
 }
+/**
+ *  非递归版本
+ *  public class Solution {
+ 
+    List<Integer> list = new ArrayList<Integer>();
+    Stack<TreeNode> stack = new Stack<TreeNode>();
+    
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root == null) {
+            return list;
+        }
+        
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            TreeNode cur = stack.pop();
+            list.add(cur.val);
+            if (cur.right != null) {
+                stack.push(cur.right);
+            }
+            if(cur.left != null) {
+                stack.push(cur.left);
+            } 
+        }
+        return list;
+        
+    }
+}
+ */
