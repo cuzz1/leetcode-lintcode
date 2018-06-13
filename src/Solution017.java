@@ -27,7 +27,7 @@ public class Solution017 {
         
         if (count == 0) {
         	List list1 = new ArrayList<Integer>(list);
-        	Collections.sort(list);
+        	Collections.sort(list1);
             res.add(list1);
             return;
         }   
