@@ -33,3 +33,33 @@ public class Solution031 {
         
     }
 }
+/**
+ 
+public class Solution {
+   
+    public int partitionArray(int[] nums, int k) {
+        // write your code here
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int p = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < k) {
+                exch(nums, p, i);
+                p ++;
+            }
+        }
+        
+        return p;
+    }
+    
+    private void exch(int[] nums, int i, int j) {
+        int temp  = nums[i];
+        nums[j] = nums[i];
+        nums[i] = temp;
+    }
+} 
+ 
+ 
+*/
