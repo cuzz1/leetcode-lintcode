@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Stack;
+
 public class Solution423 {
     /**
      * @param s: A string
@@ -34,5 +36,4 @@ public class Solution423 {
         }
         return stack.isEmpty();
     }
-    
 }
