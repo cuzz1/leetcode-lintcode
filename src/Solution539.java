@@ -1,6 +1,6 @@
 package src;
 
-public class Solution {
+public class Solution539 {
     /**
      * @param nums: an integer array
      * @return: nothing
@@ -20,5 +20,4 @@ public class Solution {
             nums[j] = 0;
         }
     }
-}
 }
