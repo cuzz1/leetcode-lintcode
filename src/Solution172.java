@@ -7,18 +7,20 @@ public class Solution172 {
      * @return: The new length after remove
      */
     public int removeElement(int[] A, int elem) {
-        // write your code here
-    	
-    	int pointer = A.length - 1;
-    	int i = 0;
-    	while(i <= pointer) {
-    		if (A[i] == elem) {
-    			A[i] = A[pointer];
-    			pointer--;
-    		} else {
-    			i++;
-    		}
-    	}
-    	return pointer + 1;
+        int p = 0;
+        // [0..p) 为剩下的元素 [p...i] 为删除的元素
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] != elem) {
+                exch(A, i, p);
+                p++;
+            }
+        }
+        return p;
+    }
+    
+    private void exch(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
