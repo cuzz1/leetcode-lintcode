@@ -9,44 +9,42 @@ class Solution005 {
     public int kthLargestElement(int k, int[] nums) {
         int start = 0;
         int end = nums.length - 1;
-        k = nums.length - k + 1 - 1;
-        int p = find(k, nums, start, end);
+       
+        // 转换为第m的小的元素, 从0开始
+        int m = nums.length - k;
         
-        return p;
+        int res = find(m, nums, start, end);
+        return res;
     }
     
-    private int find(int k, int[] nums, int start, int end) {
+    private int find(int m, int[] nums, int start, int end) {
         if (start > end) {
             return Integer.MIN_VALUE;
         }
         
-        int p = partition(k, nums, start, end);
-        
-        if (p == k) {
-            return nums[k];
-        } else if (p < k) {
-            return find(k, nums, p + 1, end);
+        int p = partition(nums, start, end);
+        print(nums);
+        if (p == m) {
+            return nums[p];
+        } else if (p > m) {
+            return  find(m,nums, start, p - 1);
         } else {
-            return find(k, nums, start, p - 1);
+           return find(m,nums, p + 1, end);
         }
-        
-        
     }
     
-    private int partition(int k, int[] nums, int start, int end) {
-        int flag = nums[end];
-        int p = 0;
-        for (int i = 0; i < end; i++) {
-            if (nums[i] < flag) {
-                exch(nums, i, p);
-                p++;
+    private int partition(int[] nums, int start, int end) {
+        int pivot = nums[end];
+        int p = start - 1; // [start, p]表示小于pivot [p, i] 大于pivot
+        
+        for (int i = start; i < end; i++) {
+            if (nums[i] < pivot) {
+                exch(nums, i, ++p);
             }
         }
-        exch(nums, p, end);
-        print(nums);
+        exch(nums, ++p, end);
         return p;
     }
-    
     
     private void exch(int[] nums, int i, int j) {
         int temp = nums[i];
@@ -55,14 +53,11 @@ class Solution005 {
     }
     
     private void print(int[] nums) {
-        for (int i : nums) {
+        for(int i : nums) {
             System.out.print(i + " ");
         }
         System.out.println();
 
     }
-    
-    
-    
     
 };
