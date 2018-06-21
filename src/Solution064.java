@@ -51,3 +51,29 @@ public class Solution064 {
 		}
     }
 }
+/*
+ 
+// 原地选择 
+public class Solution {
+    public void mergeSortedArray(int[] A, int m, int[] B, int n) {
+        
+        int p = A.length - 1;
+        while (m > 0 && n > 0) {
+            if (A[m-1] >= B[n-1]) {
+                A[p] = A[m-1];
+                m--;
+            } else {
+                A[p] = B[n-1];
+                n--;
+            }
+            p--;
+        }
+        
+        if (m == 0) {
+            for (int i = 0; i <= p; i++) {
+                A[i] = B[i];
+            }
+        }
+    }
+}
+ */
