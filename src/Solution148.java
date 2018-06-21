@@ -32,3 +32,34 @@ public class Solution148 {
     }
     
 }
+
+/*
+ * 
+// 使用3路排序
+public class Solution {
+ 
+    public void sortColors(int[] nums) {
+       // 使用3路快排
+       int p = -1;              // [0, p] 为0
+       int q = nums.length;     // [i, q] 为1 
+       
+       for (int i = 0; i < q; ) {
+           if (nums[i] == 1) {
+               i++;
+           } else if (nums[i] == 0) {
+               exch(nums, ++p, i++);
+           } else {
+               exch(nums, --q, i);
+           }
+       }
+        
+    }
+    
+    private void exch(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+    
+} 
+*/
