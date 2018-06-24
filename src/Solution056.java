@@ -16,11 +16,9 @@ public class Solution056 {
     public static int[] twoSum(int[] numbers, int target) {
         // write your code here
     	int[] result = new int[2];
-    	int i;
-    	int j;
-    	for(i = 0; i < numbers.length; i++){
+    	for(int i = 0; i < numbers.length; i++){
     		int temp = target - numbers[i];
-    		for(j = i + 1; j < numbers.length; j++){
+    		for(int j = i + 1; j < numbers.length; j++){
     			if(temp == numbers[j]){
     				result[0] = i;
     				result[1] = j;
@@ -31,3 +29,28 @@ public class Solution056 {
 		return result;
     }
 }
+/*
+ 
+ public class Solution {
+  
+     // O(n)
+    public int[] twoSum(int[] numbers, int target) {
+        int [] res = new int[2];
+        Map<Integer, Integer>  map = new HashMap<>(); 
+        
+        for (int i = 0; i < numbers.length; i++) {
+            int temp = target - numbers[i];
+            if (map.containsKey(temp)) {
+                res[0] = map.get(temp);
+                res[1] = i;
+                return res;
+            }
+            map.put(numbers[i], i);
+            
+        }
+        return res;
+    }
+}
+ 
+ 
+ */
