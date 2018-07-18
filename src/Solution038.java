@@ -7,14 +7,14 @@ public class Solution038 {
      * @return: An integer indicate the total occurrence of target in the given matrix
      */
     public int searchMatrix(int[][] matrix, int target) {
+    	int res = 0;
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return 0;
+            return res;
         }
         int row = matrix.length;
         int column = matrix[0].length;
         int i = 0;
         int j = column - 1;
-        int res = 0;
         while (i < row && j >= 0) {
             if (target < matrix[i][j]) {
                 j--;
