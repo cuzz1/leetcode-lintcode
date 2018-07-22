@@ -1,20 +1,23 @@
 package src;
 
-public class Solution204 {
-    /**
-     * @return: The same instance of this class every time
-     */
-	
-	private static Solution204 solution;
-	private Solution204() {
-		
-	}
-
-    public static Solution204 getInstance() {
-        // write your code here
-    	if (solution == null) {
-    		solution = new Solution204();
-    	}
-    	return solution;
-    }
-}
+//class Solution204 {
+//    
+//    private static Solution instance = null; 
+//    
+//    // 私有构造器
+//    private Solution(){};
+//    /**
+//     * @return: The same instance of this class every time
+//     */
+//    public static Solution getInstance() {
+//        if (instance == null) {
+//            // 多线程的情况下
+//            synchronized(Solution.class) {
+//                if (instance == null) {
+//                    instance = new Solution();
+//                }
+//            }
+//        }
+//        return instance;
+//    }
+//};
