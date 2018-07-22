@@ -14,6 +14,18 @@ import extend.ListNode;
  * }
  */
 
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+
 public class Solution035 {
     /**
      * @param head: n
@@ -21,12 +33,9 @@ public class Solution035 {
      */
     public ListNode reverse(ListNode head) {
         ListNode node = null;
-        
         while (head != null) {
             ListNode temp = head;
-            
             head = head.next;
-            
             temp.next = node;
             node = temp;
         }
@@ -34,6 +43,13 @@ public class Solution035 {
         
     }
 }
+
+
+
+
+
+
+
 
 
 
