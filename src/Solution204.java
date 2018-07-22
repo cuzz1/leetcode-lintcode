@@ -2,7 +2,7 @@ package src;
 
 //class Solution204 {
 //    
-//    private static Solution instance = null; 
+//    private static volatile Solution instance = null; 
 //    
 //    // 私有构造器
 //    private Solution(){};
