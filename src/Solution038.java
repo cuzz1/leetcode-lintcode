@@ -7,25 +7,29 @@ public class Solution038 {
      * @return: An integer indicate the total occurrence of target in the given matrix
      */
     public int searchMatrix(int[][] matrix, int target) {
-    	int res = 0;
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return res;
+            return 0;
         }
-        int row = matrix.length;
-        int column = matrix[0].length;
+        
+        int count = 0;
+        
+        int row = matrix.length - 1;
+        int column = matrix[0].length - 1;
+        
         int i = 0;
-        int j = column - 1;
-        while (i < row && j >= 0) {
-            if (target < matrix[i][j]) {
-                j--;
-            } else if (target > matrix[i][j]) {
+        int j = column;
+        
+        while (i <= row && j >= 0) {
+            if (matrix[i][j] < target) {
                 i++;
+            } else if (matrix[i][j] > target) {
+                j--;
             } else {
-                res ++;
-                j--;
+                count++;
                 i++;
+                j--;
             }
         }
-        return res;
+    return count;
     }
 }
