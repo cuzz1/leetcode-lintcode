@@ -5,24 +5,27 @@ public class Solution111 {
      * @param n: An integer
      * @return: An integer
      */
-	public static void main(String[] args) {
-		int result = climbStairs(3);
-		System.out.println(result);
-	}
-
-	// 斐波那契数列 f(n) = f(n-1) + f(n-2)
-    public static int climbStairs(int n) {
-    	if (n <= 1) {
-    		return n;
-    	}
-    	
-    	int a = 1;
-    	int b = 1;
-    	for (int i = 2; i <= n; i++) {
-    		int temp = b;
-    		b = a + b;
-    		a = temp;
-    	}
-    	return b;
+    public int climbStairs(int n) {
+        // if (n == 1) {
+        //     return 1;
+        // }
+        // if (n == 2) {
+        //     return 2;
+        // }
+        // return climbStairs(n - 1) + climbStairs(n - 2);
+        if (n == 0) {
+            return 0;
+        }
+        
+        int a = 1;
+        int b = 2;
+        int i = 1;
+        while (i++ < n) {
+            int temp = b;
+            b = a + b;
+            a = temp;
+        }
+        
+        return a;
     }
 }
