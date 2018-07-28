@@ -6,22 +6,28 @@ public class Solution028 {
      * @param target: An integer
      * @return: a boolean, indicate whether matrix contains target
      */
-	public static void main(String[] args) {
-		int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-		boolean result = searchMatrix(matrix, 3);
-		System.out.println(result);
-	}
-    public static boolean searchMatrix(int[][] matrix, int target) {
-        // write your code here
-    	boolean flag = false;
-    	for(int i = 0; i < matrix.length; i++){
-    		for(int j = 0; j < matrix[i].length; j++){
-    			if(matrix[i][j] == target){
-    				return true;
-    			}
-    		}
-    	}
-    	return false;
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return false;
+        }
+        
+        int row = matrix.length - 1;
+        int column = matrix[0].length - 1;
+        
+        int i = 0;
+        int j = column;
+        
+        while (i <= row && j >= 0) {
+            if (target < matrix[i][j]) {
+                j--;
+            } else if (target > matrix[i][j]) {
+                i++;
+            } else {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
 //public class Solution {
