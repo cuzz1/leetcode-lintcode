@@ -14,7 +14,7 @@ import extend.ListNode;
  * }
  */
 
-public class Solution174 {
+public class Solution {
     /**
      * @param head: The first node of linked list.
      * @param n: An integer
@@ -24,25 +24,23 @@ public class Solution174 {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         
-        ListNode node1 = dummy;
-        ListNode node2 = dummy;
+        ListNode p = dummy;
+        ListNode q = dummy;
         
         int i = 0;
         while (i < n) {
-            node1 = node1.next;
-            i++;
+            q = q.next;
+            i ++;
+        }
+        while (q.next != null) {
+            q = q.next;
+            p = p.next;
         }
         
-        while (node1.next != null) {
-            node1 = node1.next;
-            node2 = node2.next;
-        }
-        
-        node2.next = node2.next.next;
+        p.next = p.next.next;
         return dummy.next;
     }
 }
-
 
 
 
