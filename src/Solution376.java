@@ -1,11 +1,3 @@
-package src;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
-import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -19,8 +11,7 @@ import extend.TreeNode;
  */
 
 
-public class Solution376 {
-    
+public class Solution {
     /*
      * @param root: the root of binary tree
      * @param target: An integer
@@ -28,47 +19,36 @@ public class Solution376 {
      */
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
         List<List<Integer>> res = new ArrayList<>();
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         
         if (root == null) {
             return res;
         }
         
+        binaryTreePathSum(root, target, stack, res);
         
-        binaryTreePathSum(res, stack, root, target);
-        
-
         return res;
     }
     
-    private void binaryTreePathSum(List<List<Integer>> res, Stack<Integer> stack, TreeNode root, int target) {
-        
+    private void binaryTreePathSum(TreeNode root, int target, Stack<Integer> stack, List<List<Integer>> res) {
         stack.push(root.val);
-
         
-        // 子节点要满足左节点和右节点为null
-        if (root.left == null && root.right == null && target == root.val ) {
+        // 子节点满足左节点和右节点为null且 target == root.val
+        if (root.left == null && root.right == null && target == root.val) {
             List<Integer> list = new ArrayList(stack);
             res.add(list);
-        } 
+        }
         
         if (root.left != null) {
-            binaryTreePathSum(res, stack, root.left, target - root.val);
+            binaryTreePathSum(root.left, target - root.val, stack, res);
         }
-
         
         if (root.right != null) {
-            binaryTreePathSum(res, stack, root.right, target - root.val);
+            binaryTreePathSum(root.right, target - root.val, stack, res);
         }
         
         // 回溯
         stack.pop();
-
-    }    
+    }
+    
 }
-
-
-
-
-
-
