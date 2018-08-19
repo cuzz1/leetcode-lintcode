@@ -20,35 +20,59 @@ public class Solution {
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
         List<List<Integer>> res = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
-        
-        if (root == null) {
-            return res;
+        if (root != null) {
+            helper(root, target, stack, res);
         }
-        
-        binaryTreePathSum(root, target, stack, res);
-        
         return res;
     }
     
-    private void binaryTreePathSum(TreeNode root, int target, Stack<Integer> stack, List<List<Integer>> res) {
-        stack.push(root.val);
+    private void helper(TreeNode root, int target, Stack<Integer> stack, List<List<Integer>> res) {
         
-        // 子节点满足左节点和右节点为null且 target == root.val
-        if (root.left == null && root.right == null && target == root.val) {
-            List<Integer> list = new ArrayList(stack);
-            res.add(list);
-        }
-        
-        if (root.left != null) {
-            binaryTreePathSum(root.left, target - root.val, stack, res);
-        }
-        
-        if (root.right != null) {
-            binaryTreePathSum(root.right, target - root.val, stack, res);
-        }
-        
-        // 回溯
-        stack.pop();
+         stack.push(root.val);
+
+         if (root.left == null && root.right == null && root.val == target) {
+             List<Integer> list = new ArrayList<>(stack);
+             res.add(list);
+         }
+         
+         
+         // 左节点
+         if (root.left != null) {
+             helper(root.left, target - root.val, stack, res);
+         }
+         
+         // 右节点
+         if (root.right != null) {
+             helper(root.right, target - root.val, stack, res);
+         }
+         
+         // 回溯
+         stack.pop();
     }
-    
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
