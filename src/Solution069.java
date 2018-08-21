@@ -1,12 +1,3 @@
-package src;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
-import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -19,50 +10,42 @@ import extend.TreeNode;
  * }
  */
 
-public class Solution069 {
+public class Solution {
     /**
      * @param root: A Tree
      * @return: Level order a list of lists of integer
      */
-    private List<List<Integer>> res = new ArrayList<>();
-    
     public List<List<Integer>> levelOrder(TreeNode root) {
-        
+        List<List<Integer>> res = new ArrayList<>();
         Queue<Tuple<TreeNode, Integer>> queue = new LinkedList<>();
-        
         if (root == null) {
             return res;
         }
         
-        queue.offer(new Tuple(root, 0));
+        queue.offer(new Tuple<TreeNode, Integer>(root, 0));
         
         while (!queue.isEmpty()) {
             Tuple<TreeNode, Integer> tuple = queue.poll();
             TreeNode node = tuple.getFirst();
             Integer level = tuple.getSecond();
-            
-            // 如果层数与size相等说明需要添加一个List
+            // 添加一个list
             if (level == res.size()) {
                 res.add(new ArrayList<Integer>());
             }
             
             res.get(level).add(node.val);
             
-            // 如果左节点不为空
             if (node.left != null) {
-                queue.offer(new Tuple(node.left, level + 1));
+                queue.offer(new Tuple<TreeNode, Integer>(node.left, level + 1));
             }
             
-            // 如果右节点不为空
             if (node.right != null) {
-                queue.offer(new Tuple(node.right, level + 1));
+                queue.offer(new Tuple<TreeNode, Integer>(node.right, level + 1));
             }
         }
         return res;
-        
     }
     
-    // 内部类
     private class Tuple<A, B> {
         private A first;
         private B second;
@@ -79,8 +62,5 @@ public class Solution069 {
         public B getSecond() {
             return second;
         }
-    
     }
-    
-
 }
