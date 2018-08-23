@@ -1,10 +1,3 @@
-package src;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -17,28 +10,32 @@ import extend.TreeNode;
  * }
  */
 
-public class Solution068 {
+public class Solution {
     /**
      * @param root: A Tree
      * @return: Postorder in ArrayList which contains node values.
      */
     public List<Integer> postorderTraversal(TreeNode root) {
-    List<Integer> list = new ArrayList<Integer>();
-        helper(root, list);
-        return list;
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        helper(root, res);
+        return res;
     }
     
-    private void helper(TreeNode node, List<Integer> list) {
-        if (node == null) {
+    private void helper(TreeNode root, List<Integer> res) {
+        if (root == null) {
             return;
         }
-        if (node.left != null) {
-            helper(node.left, list);
+        
+        if (root.left != null) {
+            helper(root.left, res);
         }
         
-        if (node.right != null) {
-            helper(node.right, list);
-        } 
-        list.add(node.val);
+        if (root.right != null) {
+            helper(root.right, res);
+        }
+        
+        res.add(root.val);
     }
 }
