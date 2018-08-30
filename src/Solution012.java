@@ -1,15 +1,12 @@
-package src;
-
-import java.util.Stack;
-
-public class Solution012 {
+public class MinStack {
     
-    private Stack<Integer> stack1 = new Stack<Integer>();
-    private Stack<Integer> stack2 = new Stack<Integer>();
+    private Stack<Integer> stack1;
+    private Stack<Integer> stack2;
     
-    public Solution012() {
-        // do intialization if necessary
-        
+    
+    public MinStack() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
     }
 
     /*
@@ -17,14 +14,14 @@ public class Solution012 {
      * @return: nothing
      */
     public void push(int number) {
-        if (!stack1.isEmpty()) {
-            if (stack2.peek() < number) {
-                stack2.push(stack2.peek());
-            } else {
-                stack2.push(number);
-            }
-        } else {
+        if (stack1.isEmpty()) {
             stack2.push(number);
+        } else {
+            if (number < stack2.peek()) {
+                stack2.push(number);
+            } else {
+                stack2.push(stack2.peek());
+            }
         }
         stack1.push(number);
     }
@@ -33,9 +30,8 @@ public class Solution012 {
      * @return: An integer
      */
     public int pop() {
-       int num1 = stack1.pop();
-       int num2 = stack2.pop();
-       return num1;
+        stack2.pop();
+        return stack1.pop();
     }
 
     /*
