@@ -1,2 +1,2 @@
-# Lintcode 
-刷题之路
+# LeetCode && Lintcode 
+Let's shua it...
