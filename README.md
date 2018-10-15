@@ -1,2 +1,2 @@
-# LeetCode && Lintcode 
+# Leetcode && Lintcode 
 Let's shua it...
