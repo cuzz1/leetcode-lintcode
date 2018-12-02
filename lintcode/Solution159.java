@@ -1,25 +1,21 @@
-package src;
-
-public class Solution159 {
+public class Solution {
     /**
      * @param nums: a rotated sorted array
      * @return: the minimum number in the array
      */
     public int findMin(int[] nums) {
-        int start = 0;
-        int end = nums.length - 1;
+        int left = 0;
+        int right = nums.length - 1;
         
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-            if (nums[end] > nums[mid]) {
-                // end = mid - 1  当只有两个元素时会报错
-                end = mid;
-            } else if (nums[end] < nums[mid]) {
-                start = mid + 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] > nums[right]) {
+                left = mid;
             } else {
-                end = end - 1;
+                right = mid;
             }
         }
-        return nums[start];
+        
+        return nums[left] > nums[right] ? nums[right] : nums[left];
     }
 }
