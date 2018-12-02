@@ -1,7 +1,3 @@
-package src;
-
-import extend.ListNode;
-
 /**
  * Definition for ListNode
  * public class ListNode {
@@ -20,14 +16,15 @@ public class Solution {
      * @return: The new head of reversed linked list.
      */
     public ListNode reverse(ListNode head) {
-        ListNode node = null;
+        ListNode res = null;
+        
         while (head != null) {
-            ListNode temp = head;
-            head = head.next;
-            temp.next = node;
-            node = temp;
+            ListNode p = head.next;     
+            head.next = res;
+            res = head;
+            head = p;
         }
-        return node;
+        return res;
     }
 }
 
