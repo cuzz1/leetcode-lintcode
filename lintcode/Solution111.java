@@ -1,31 +1,18 @@
-package src;
-
-public class Solution111 {
+public class Solution {
     /**
      * @param n: An integer
      * @return: An integer
      */
     public int climbStairs(int n) {
-        // if (n == 1) {
-        //     return 1;
-        // }
-        // if (n == 2) {
-        //     return 2;
-        // }
-        // return climbStairs(n - 1) + climbStairs(n - 2);
-        if (n == 0) {
-            return 0;
-        }
-        
+        if (n < 1) return 0;
         int a = 1;
-        int b = 2;
-        int i = 1;
-        while (i++ < n) {
-            int temp = b;
-            b = a + b;
-            a = temp;
-        }
+        int b = 1;
         
+        for (int i = 0; i < n; i++) {
+            int tmp = a;    
+            a = b;
+            b = b + tmp;
+        }
         return a;
     }
 }
