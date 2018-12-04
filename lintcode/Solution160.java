@@ -1,6 +1,4 @@
-package src;
-
-public class Solution160 {
+public class Solution {
     /**
      * @param nums: a rotated sorted array
      * @return: the minimum number in the array
@@ -8,24 +6,22 @@ public class Solution160 {
     public int findMin(int[] nums) {
         int start = 0;
         int end = nums.length - 1;
-        int res = findMin(nums, start, end);
-        return res;
-    }
-    
-    private int findMin(int[] nums, int start, int end) {
-        if (start >= end) {
-            return nums[start];
+        
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            
+            if (nums[mid] == nums[start] && nums[mid] == nums[end]) {
+                start++;
+                continue;
+            }
+            
+            if (nums[mid] > nums[end]) {
+                start = mid;   
+            } else {
+                end = mid;
+            }
         }
-        int mid = start + (end - start) / 2;
-        // 如果中间的比最后的大那么目标会在 [mid + 1, end]
-        if (nums[mid] > nums[end]) {
-            return findMin(nums, mid + 1, end);
-        // 如果中间的比最前面的小那么目标会在 [start, end]
-        } else if (nums[mid] < nums[start]) {
-            return findMin(nums, start, mid);
-        // 如果都不是的话让end - 1
-        } else {
-            return findMin(nums, start, end - 1);
-        }
+        
+        return nums[start] < nums[end] ? nums[start] : nums[end];
     }
 }
