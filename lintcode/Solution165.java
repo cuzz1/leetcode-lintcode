@@ -1,7 +1,3 @@
-package src;
-
-import extend.ListNode;
-
 /**
  * Definition for ListNode
  * public class ListNode {
@@ -21,54 +17,25 @@ public class Solution {
      * @return: ListNode head of linked list
      */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null) {
-            return l2;
-        }
-        if (l2 == null) {
-            return l1;
-        }
-        
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        while (l1 != null) {
-            list1.add(l1.val);
-            l1 = l1.next;
-        }
-        while (l2 != null) {
-            list2.add(l2.val);
-            l2 = l2.next;
-        }
-        
-        List<Integer> list3 = new ArrayList<>();
-        int p = 0;
-        int q = 0;
-        while (p < list1.size() && q < list2.size()) {
-            if (list1.get(p) < list2.get(q)) {
-                list3.add(list1.get(p));
-                p++;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                cur.next = l1;
+                l1 = l1.next;
             } else {
-                list3.add(list2.get(q));
-                q++;
+                cur.next = l2;
+                l2 = l2.next;
             }
+            cur = cur.next;
         }
-        
-        while (p < list1.size()) {
-            list3.add(list1.get(p));
-            p++;
+        if (l1 != null) {
+            cur.next = l1;
         }
-        
-        while (q < list2.size()) {
-            list3.add(list2.get(q));
-            q++;
+        if (l2 != null) {
+            cur.next = l2;
         }
-        
-        ListNode head = new ListNode(list3.get(0));
-        ListNode node = head;
-        for (int i = 1; i < list3.size(); i++) {
-            node.next = new ListNode(list3.get(i));
-            node= node.next;
-        }
-        return head;
+        return dummy.next;
     }
 }
 
