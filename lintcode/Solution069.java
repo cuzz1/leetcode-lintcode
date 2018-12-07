@@ -16,51 +16,21 @@ public class Solution {
      * @return: Level order a list of lists of integer
      */
     public List<List<Integer>> levelOrder(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> res = new ArrayList<>();
-        Queue<Tuple<TreeNode, Integer>> queue = new LinkedList<>();
-        if (root == null) {
-            return res;
-        }
-        
-        queue.offer(new Tuple<TreeNode, Integer>(root, 0));
-        
+        if (root == null) return res;
+        queue.add(root);
         while (!queue.isEmpty()) {
-            Tuple<TreeNode, Integer> tuple = queue.poll();
-            TreeNode node = tuple.getFirst();
-            Integer level = tuple.getSecond();
-            // 添加一个list
-            if (level == res.size()) {
-                res.add(new ArrayList<Integer>());
+            List<Integer> list = new ArrayList<>();
+            int cnt = queue.size();
+            while (cnt-- > 0) {
+                TreeNode node = queue.poll();
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+                list.add(node.val);
             }
-            
-            res.get(level).add(node.val);
-            
-            if (node.left != null) {
-                queue.offer(new Tuple<TreeNode, Integer>(node.left, level + 1));
-            }
-            
-            if (node.right != null) {
-                queue.offer(new Tuple<TreeNode, Integer>(node.right, level + 1));
-            }
+            res.add(new ArrayList(list));
         }
         return res;
-    }
-    
-    private class Tuple<A, B> {
-        private A first;
-        private B second;
-        
-        public Tuple(A first, B second) {
-            this.first = first;
-            this.second = second;
-        }
-        
-        public A getFirst() {
-            return first;
-        }
-        
-        public B getSecond() {
-            return second;
-        }
     }
 }
