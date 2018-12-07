@@ -16,26 +16,16 @@ public class Solution {
      * @return: Postorder in ArrayList which contains node values.
      */
     public List<Integer> postorderTraversal(TreeNode root) {
-        
-        List<Integer> res = new ArrayList<Integer>();
-        
-        helper(root, res);
-        return res;
+        List<Integer> list = new ArrayList<>();
+        postorder(list, root);
+        return list;
     }
     
-    private void helper(TreeNode root, List<Integer> res) {
-        if (root == null) {
-            return;
-        }
-        
-        if (root.left != null) {
-            helper(root.left, res);
-        }
-        
-        if (root.right != null) {
-            helper(root.right, res);
-        }
-        
-        res.add(root.val);
+    private void postorder(List<Integer> list, TreeNode node) {
+        if (node == null) return;
+        if (node.left != null) postorder(list, node.left);
+        if (node.right != null) postorder(list, node.right);
+        list.add(node.val);
     }
+    
 }
