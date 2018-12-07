@@ -19,60 +19,24 @@ public class Solution {
      */
     public List<List<Integer>> binaryTreePathSum(TreeNode root, int target) {
         List<List<Integer>> res = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
-        if (root != null) {
-            helper(root, target, stack, res);
-        }
+        if (root == null) return res;
+        helper(res, new ArrayList<Integer>(), root, target);
         return res;
     }
     
-    private void helper(TreeNode root, int target, Stack<Integer> stack, List<List<Integer>> res) {
-        
-         stack.push(root.val);
+    private void helper(List<List<Integer>> res, List<Integer> list, TreeNode root, int target) {
+        list.add(root.val);
 
-         if (root.left == null && root.right == null && root.val == target) {
-             List<Integer> list = new ArrayList<>(stack);
-             res.add(list);
-         }
-         
-         
-         // 左节点
-         if (root.left != null) {
-             helper(root.left, target - root.val, stack, res);
-         }
-         
-         // 右节点
-         if (root.right != null) {
-             helper(root.right, target - root.val, stack, res);
-         }
-         
-         // 回溯
-         stack.pop();
+        if (root.left == null && root.right == null && root.val == target) {
+            res.add(new ArrayList(list));
+        }
+
+        if (root.left != null) {
+            helper(res, list, root.left, target-root.val);
+        }
+        if (root.right != null) {
+            helper(res, list, root.right, target-root.val);
+        }
+        list.remove(list.size()-1);
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
