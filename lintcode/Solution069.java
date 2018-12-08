@@ -21,15 +21,15 @@ public class Solution {
         if (root == null) return res;
         queue.add(root);
         while (!queue.isEmpty()) {
+            int count = queue.size();
             List<Integer> list = new ArrayList<>();
-            int cnt = queue.size();
-            while (cnt-- > 0) {
+            while (count-- > 0) {
                 TreeNode node = queue.poll();
+                list.add(node.val);
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
-                list.add(node.val);
             }
-            res.add(new ArrayList(list));
+            res.add(list);
         }
         return res;
     }
