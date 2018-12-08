@@ -4,10 +4,8 @@ public class Solution {
      * @return: an integer list
      */
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> result = new ArrayList<>();
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return result;
-        }
+        List<Integer> list = new ArrayList<>();
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return list;
         
         int rowStart = 0;
         int rowEnd = matrix.length - 1;
@@ -15,40 +13,35 @@ public class Solution {
         int colEnd = matrix[0].length - 1;
         
         while (rowStart <= rowEnd && colStart <= colEnd) {
-            int i = rowStart;
-            int j = colStart;
-            while (j <= colEnd) {
-                result.add(matrix[i][j]);
-                j++;
-            }
-            j--;
-            i++;
             
-            while (i <= rowEnd) {
-                result.add(matrix[i][j]);
-                i++;    
+            // 左到右
+            for (int i = colStart; i <= colEnd; i++) {
+                list.add(matrix[rowStart][i]);
             }
-            i--;
-            j--;
-            
-            // 判断是不是在同一行
-            while (j > colStart && rowStart != rowEnd) {
-                result.add(matrix[i][j]);
-                j--;
-            }
-            
-            // 判断是不是在同一列
-            while (i > rowStart && colStart != colEnd) {
-                result.add(matrix[i][j]);
-                i--;
-            }
-            
-            colStart++;
             rowStart++;
+            
+            // 上到下
+            for (int i = rowStart; i <= rowEnd; i++) {
+                list.add(matrix[i][colEnd]);
+            }
             colEnd--;
+            
+            // 右到左
+            if (rowStart <= rowEnd) {
+                for (int i = colEnd; i >= colStart; i--) {
+                    list.add(matrix[rowEnd][i]);
+                }
+            }
             rowEnd--;
-        
+            
+            // 下到上
+            if (colStart <= colEnd) {
+                for (int i = rowEnd; i >= rowStart; i--) {
+                    list.add(matrix[i][colStart]);
+                }
+            }
+            colStart++;
         }
-        return result;
+        return list;
     }
 }
