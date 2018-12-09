@@ -1,4 +1,3 @@
-
 /**
  * Definition for singly-linked list with a random pointer.
  * class RandomListNode {
@@ -13,34 +12,27 @@ public class Solution {
      * @return: A new head of a deep copy of the list.
      */
     public RandomListNode copyRandomList(RandomListNode head) {
-        if (head == null) {
-            return null;
-        }
+        if (head == null) return null;
         
-        // 复制链表
-        copyNext(head);
-        
-        // 复制rondom
-        copyRandom(head);
-        
-        // 拆分链表
-        RandomListNode res = splitList(head);
-        
-       return res; 
+        copyNext(head);          // 复制链表
+        copyRandom(head);        // 复制Random
+        return splitList(head);  // 拆分链表
     }
     
     private void copyNext(RandomListNode head) {
         while (head != null) {
-            RandomListNode newHead = new RandomListNode(head.label);
-            newHead.next = head.next;
-            head.next = newHead;
+            RandomListNode node = new RandomListNode(head.label);
+            node.next = head.next;
+            head.next = node;
             head = head.next.next;
         }
     }
     
     private void copyRandom(RandomListNode head) {
         while (head != null) {
-            head.next.random = head.random;
+            if (head.random != null) {
+                head.next.random = head.random.next;
+            }
             head = head.next.next;
         }
     }
@@ -49,21 +41,12 @@ public class Solution {
         RandomListNode newHead = head.next;
         while (head != null) {
             RandomListNode temp = head.next;
-            head.next = temp.next;
-            head = head.next;
+            head.next = head.next.next;
             if (temp.next != null) {
                 temp.next = temp.next.next;
             }
+            head = head.next;
         }
         return newHead;
     }
 }
-
-
-
-
-
-
-
-
-
