@@ -4,22 +4,17 @@ public class Solution {
      * @return: find a  majority number
      */
     public int majorityNumber(List<Integer> nums) {
-        Map<Integer, Integer> map = new HashMap<>();
+        if (nums == null || nums.size() == 0) return Integer.MIN_VALUE;
         
-        for (int i = 0; i < nums.size(); i++) {
-            int key = nums.get(i);
-            if (map.containsKey(key)) {
-                map.put(key, map.get(key)+1);
-            } else {
-                map.put(key, 1);
+        int majority = nums.get(0);
+        int count = 1;
+        for (int num : nums) {
+            count = num == majority ? count + 1 : count - 1;
+            if (count == 0) {
+                majority = num;
+                count = 1;
             }
         }
-        Set<Integer> keySet = map.keySet();
-        for (Integer key : keySet) {
-            if (map.get(key) > nums.size() / 2) {
-                return key;
-            }
-        }
-        return Integer.MIN_VALUE;
+        return majority;
     }
 }
