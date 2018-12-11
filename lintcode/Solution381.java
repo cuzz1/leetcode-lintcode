@@ -4,47 +4,38 @@ public class Solution {
      * @return: a square matrix
      */
     public int[][] generateMatrix(int n) {
-        if ( n < 0) {
-            return null;
-        }
-        
         int[][] matrix = new int[n][n];
-        int xStart = 0;
-        int yStart = 0;
-        
         int num = 1;
+        int rowStart = 0;
+        int rowEnd = n - 1;
+        int colStart = 0;
+        int colEnd = n - 1;
         
-        while ( n > 0) {
-            if (n == 1) {
-                matrix[yStart][xStart] = num++;
-                break;
+        while (rowStart <= rowEnd && colStart <= colEnd) {
+            for (int i = colStart; i <= colEnd; i++) {
+                matrix[rowStart][i] = num++;
+            }
+            rowStart++;
+            
+            for (int i = rowStart; i <= rowEnd; i++) {
+                matrix[i][colEnd] = num++;
+            }
+            colEnd--;
+            
+            if (rowStart <= rowEnd) {
+                for (int i = colEnd; i >= colStart; i--) {
+                    matrix[rowEnd][i] = num++;
+                }
+                rowEnd--;
             }
             
-            // 从左到右
-            for (int i = 0; i < n - 1; i++) {
-                matrix[yStart][xStart + i] = num++;
+            if (colStart <= colEnd) {
+                for (int i = rowEnd; i >= rowStart; i--) {
+                    matrix[i][colStart] = num++;
+                }
+                colStart++;
             }
-            
-            // 从上到下
-            for (int i = 0; i < n - 1; i++) {
-                matrix[yStart + i][xStart + n -1] = num++;
-            }
-            
-            // 从右到左
-            for (int i = 0; i < n - 1; i++) {
-                matrix[yStart + n - 1][xStart + n - 1 - i] = num++;
-            }
-            
-            // 从下到上
-            for (int i = 0; i < n - 1; i++) {
-                matrix[yStart + n - 1 - i][xStart] = num++;
-            }
-            
-            xStart++;
-            yStart++;
-            n = n - 2;
         }
         return matrix;
-    
     }
 }
