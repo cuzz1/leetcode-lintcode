@@ -17,45 +17,29 @@ public class Solution {
      * @return: a ListNode
      */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if (headA == null || headB == null) {
-            return null;
+        if (headA == null || headB == null) return null;
+        int lenA = getLength(headA);
+        int lenB = getLength(headB);
+        return lenA > lenB ? helper(headA, headB, lenA - lenB) : helper(headB, headA, lenB - lenA);
+    }
+    
+    private ListNode helper(ListNode headA, ListNode headB, int len) {
+        while (len-- > 0) {
+            headA = headA.next;
         }
-        int lengthA = getLength(headA);
-        int lengthB = getLength(headB);
-        
-        // 如果链表A的长度大于链表B长度
-        if (lengthA >= lengthB) {
-            int len = lengthA - lengthB;
-            while (len > 0) {
-                headA = headA.next;
-                len--;
-            }
-        }
-        
-        // 如果链表B的长度大于链表A长度
-        if (lengthA < lengthB) {
-            int len = lengthB - lengthA;
-            while (len > 0) {
-                headB = headB.next;
-                len--;
-            }
-        }
-        
         while (headA != headB) {
             headA = headA.next;
             headB = headB.next;
         }
-        
-        return headA;   
-        
+        return headA == headB ?  headA : null;
     }
     
     private int getLength(ListNode node) {
-        int length = 0;
+        int count = 0;
         while (node != null) {
+            count++;
             node = node.next;
-            length++;
         }
-        return length;
+        return count;
     }
 }
