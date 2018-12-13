@@ -7,7 +7,6 @@ public class Solution {
     public int kthLargestElement(int n, int[] nums) {
         if (nums == null || nums.length == 0 || nums.length + 1 < n) return -1;
         quickSort(nums, 0, nums.length - 1);
-      
         return nums[nums.length - n];
     }
     
