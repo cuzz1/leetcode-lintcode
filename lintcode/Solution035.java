@@ -29,6 +29,22 @@ public class Solution {
 }
 
 
+// 递归
+public class Solution {
+    /**
+     * @param head: n
+     * @return: The new head of reversed linked list.
+     */
+    public ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) return head;
+        // 1 null<-2<-3<-4  
+        ListNode newHead = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+}
+
 
 
 
