@@ -1,45 +1,21 @@
-package src;
-
-public class Solution004 {
+public class Solution {
     /**
      * @param n: An integer
      * @return: the nth prime number as description.
      */
-	public static void main(String[] args) {
-		int count = nthUglyNumber(41);
-		System.out.println(count);
-	}
-    public static int nthUglyNumber(int n) {
-
-    	int[] num = new int[n];
-    	// 添加第一个丑数
-    	num[0] = 1;
-    	int p2 = 0, p3 = 0, p5 = 0;
-    	
-    	for(int i = 1; i < n; i++){
-    		// 比较的数
-    		int lastNumber = num[i-1];
-    		
-    		while(num[p2]*2 <= lastNumber){
-    			p2++;
-    		}
-    		while(num[p3]*3 <= lastNumber){
-    			p3++;
-    		}
-    		while(num[p5]*5 <= lastNumber){
-    			p5++;
-    		}
-    		
-    		int minNumber = min(min(num[p2]*2, num[p3]*3), num[p5]*5);
-    		num[i] = minNumber;
-    	}
-    	return num[n-1];
+    public int nthUglyNumber(int n) {
+        if (n <= 6) return n;
+        int[] dp = new int[n];
+        dp[0] = 1;
+        int i2 = 0, i3 = 0, i5 = 0;
+        for (int i = 1; i < n; i++) {
+            int next2 = dp[i2] * 2, next3 = dp[i3] * 3, next5 = dp[i5] * 5;
+            int next = Math.min(next2, Math.min(next3, next5));
+            dp[i] = next;
+            if (next == next2) i2++;
+            if (next == next3) i3++;
+            if (next == next5) i5++;
+        }
+        return dp[n-1];
     }
-	private static int min(int i, int j) {
-		if(i >= j){
-			return j;
-		}else{
-			return i;
-		}
-	}
 }
