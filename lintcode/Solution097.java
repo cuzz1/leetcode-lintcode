@@ -1,7 +1,3 @@
-package src;
-
-import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -14,27 +10,12 @@ import extend.TreeNode;
  * }
  */
 
-public class Solution097 {
+public class Solution {
     /**
      * @param root: The root of binary tree.
      * @return: An integer
      */
     public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        
-        // 左子树
-        int leftMaxDepth = maxDepth(root.left);
-        // 右子树
-        int rightMaxDepth = maxDepth(root.right);
-        
-        return Math.max(leftMaxDepth, rightMaxDepth) + 1;
+        return root == null ? 0 : 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
     }
 }
-
-
-
-
-
-
