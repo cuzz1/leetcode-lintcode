@@ -16,16 +16,16 @@ public class Solution {
      * @return: Level order a list of lists of integer
      */
     public List<List<Integer>> levelOrder(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         if (root == null) return res;
         queue.add(root);
         while (!queue.isEmpty()) {
-            int count = queue.size();
-            List<Integer> list = new ArrayList<>();
-            while (count-- > 0) {
+            int size = queue.size();
+            List list = new ArrayList<>();
+            while (size-- > 0) {
                 TreeNode node = queue.poll();
-                list.add(node.val);
+                list.add(node.val);    
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
             }
