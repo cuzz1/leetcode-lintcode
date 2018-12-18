@@ -1,7 +1,3 @@
-package src;
-
-import extend.TreeNode;
-
 /**
  * Definition of TreeNode:
  * public class TreeNode {
@@ -15,7 +11,7 @@ import extend.TreeNode;
  */
 
 
-public class Solution088 {
+public class Solution {
     /*
      * @param root: The root of the binary search tree.
      * @param A: A TreeNode in a Binary.
@@ -23,38 +19,12 @@ public class Solution088 {
      * @return: Return the least common ancestor(LCA) of the two nodes.
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode A, TreeNode B) {
-        if (root == null) {
-            return null;
-        } 
-    
-        if (root == A || root == B) {
-            return root;
-        }
-        
-        // 左子数中是否存在最先找到p,q中的一个节点
-        TreeNode leftNode = lowestCommonAncestor(root.left, A, B);
-        // 右子数中是否存在最先找到p,q中的一个节点
-        TreeNode rightNode = lowestCommonAncestor(root.right, A, B);
-
-        // 在当前左右节点都找到一个 返回当前节点
-        if (leftNode != null && rightNode != null) {
-            return root;
-        }
-        
-        // 如果在左节点或者右节点找到一个，说明还有一个节点在当前节点的下面
-        return leftNode != null ? leftNode : rightNode;
-        
+        if (root == null || A == root || B == root) return root;
+        TreeNode left = lowestCommonAncestor(root.left, A, B);
+        TreeNode right = lowestCommonAncestor(root.right, A, B);
+        // 左边和右边各找到一个
+        if (left !=null && right != null) return root;
+        return left != null ? left : right;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
