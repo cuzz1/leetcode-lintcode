@@ -1,7 +1,3 @@
-package src;
-
-import extend.ListNode;
-
 /**
  * Definition for ListNode
  * public class ListNode {
@@ -14,35 +10,20 @@ import extend.ListNode;
  * }
  */
 
-public class Solution112 {
+public class Solution {
     /**
      * @param head: head is the head of the linked list
      * @return: head of linked list
      */
     public ListNode deleteDuplicates(ListNode head) {
-        // write your code here
-        if (head == null) {
-            return head;
-        }
-        
-        // 定义一个指针
-        ListNode p = head;
-        
-        while (p.next != null) {
-            if (p.val == p.next.val) {
-                p.next = p.next.next;
-            } else {
-                p = p.next;
+        if (head == null) return head;
+        ListNode node = head;
+        while (node != null) {
+            while (node.next != null && node.val == node.next.val) {
+                node.next = node.next.next;
             }
-            
+            node = node.next;
         }
-        
         return head;
     }
 }
-
-
-
-
-
-
