@@ -1,29 +1,21 @@
-package src;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import extend.TreeNode;
-
-// 递归版本
-public class Solution067 {
+public class Solution {
     /**
      * @param root: A Tree
      * @return: Inorder in ArrayList which contains node values.
      */
-    List<Integer> list = new ArrayList<Integer>();
-    
     public List<Integer> inorderTraversal(TreeNode root) {
-        inorder(root);
-        return list;    
-    }
-    
-    private void inorder(TreeNode root) {
-        if (root == null) {
-            return;
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        while (!stack.empty() || node != null) {
+            while (node != null) {
+               stack.push(node); 
+               node = node.left;
+            }
+            node = stack.pop();
+            list.add(node.val);
+            node = node.right;
         }
-        inorder(root.left);
-        list.add(root.val);
-        inorder(root.right);
+        return list;
     }
 }
