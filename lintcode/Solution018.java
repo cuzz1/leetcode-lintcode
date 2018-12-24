@@ -1,55 +1,24 @@
-package src;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class Solution018 {
-    
-    private List<List<Integer>> results = new ArrayList<>();
+public class Solution {
     /**
      * @param nums: A set of numbers.
      * @return: A list of lists. All valid subsets.
      */
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        if (nums == null) {
-            return results;
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null) return res;
+        Arrays.sort(nums);
+        helper(res, new ArrayList<>(), nums, 0);
+        return res;
+    }
+    
+    private void helper(List<List<Integer>> res, List<Integer> list, int[] nums, int pos) {
+        res.add(new ArrayList<>(list));
+        for (int i = pos; i < nums.length; i++) {
+            if (i != pos && nums[i] == nums[i-1]) continue;
+            list.add(nums[i]);
+            helper(res, list, nums, i + 1); 
+            list.remove(list.size() - 1);
         }
-        
-        for (int i = 0; i <= nums.length; i++) {
-            helper(nums, new ArrayList<Integer>(), 0, i);
-        }
-        
-        return results;
-   }
-   
-   private void helper(
-       int[] nums, List<Integer> list, int start, int count) {
-           
-       
-       if (count == 0) {
-           List list1 = new ArrayList<Integer>(list);
-           Collections.sort(list1);
-           if (!results.contains(list1)) {
-               results.add(list1);
-           }
-           return;
-       }
-       
-       if (start == nums.length) {
-           return;
-       }
-       
-       // selected
-       list.add(nums[start]);
-       helper(nums, list,start + 1, count - 1);
-       
-       // un-selected
-       list.remove(list.size()-1);
-       helper(nums, list, start + 1, count);
-       
-           
-           
-           
-   }
+
+    }
 }
