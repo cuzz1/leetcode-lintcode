@@ -5,7 +5,9 @@ public class Solution {
      * @return: return the index
      */
     public int strStr(String source, String target) {
-        
+        if (source == null || target == null) {
+            return -1;
+        }
         for (int i = 0; i <= source.length() - target.length(); i++) {
             int j = 0;
             for (j = 0; j < target.length(); j++) {
