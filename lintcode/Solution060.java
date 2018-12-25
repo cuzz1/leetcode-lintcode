@@ -1,24 +1,31 @@
-package src;
-
-public class Solution060 {
+public class Solution {
     /**
      * @param A: an integer sorted array
      * @param target: an integer to be inserted
      * @return: An integer
      */
-	public static void main(String[] args) {
-		int[] A = new int[]{1, 3, 5, 6};
-		int result = searchInsert(A, 7);
-		System.out.println(result);
-	}
-    public static int searchInsert(int[] A, int target) {
-        // write your code here
-    	int i = 0;
-    	for(i = 0; i < A.length; i++){
-    		if (target <= A[i]){
-    			return i;
-    		}
-    	}
-    	return i;
+    public int searchInsert(int[] A, int target) {
+        if (A == null || A.length == 0) return 0;
+        int start = 0;
+        int end = A.length - 1;
+        while (start + 1 < end) {
+            int mid = start + (end - start) / 2;
+            if (A[mid] == target) {
+                end = mid;
+            } else if (A[mid] > target) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+        }
+        
+        // find first position >= target
+        if (A[start] >= target) {
+            return start;
+        } else if (A[end] >= target) {
+            return end;
+        } else {
+            return end + 1;
+        }
     }
 }
