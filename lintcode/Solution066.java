@@ -38,3 +38,22 @@ public class Solution {
         return list;
     }
 }
+// 分治方法
+public class Solution {
+    /**
+     * @param root: A Tree
+     * @return: Preorder in ArrayList which contains node values.
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
+        
+        List<Integer> left = preorderTraversal(root.left);
+        List<Integer> right = preorderTraversal(root.right);
+        
+        res.add(root.val);
+        res.addAll(left);
+        res.addAll(right);
+        return res;
+    }
+}
