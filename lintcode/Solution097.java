@@ -9,13 +9,16 @@
  *     }
  * }
  */
-
+// 分治思想
 public class Solution {
     /**
      * @param root: The root of binary tree.
      * @return: An integer
      */
     public int maxDepth(TreeNode root) {
-        return root == null ? 0 : 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+        if (root == null) return 0;
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        return Math.max(left, right) + 1;
     }
 }
