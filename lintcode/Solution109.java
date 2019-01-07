@@ -1,51 +1,23 @@
-package src;
-
-import javax.swing.text.html.MinimalHTMLWriter;
-
-public class Solution109 {
+public class Solution {
     /**
      * @param triangle: a list of lists of integers
      * @return: An integer, minimum path sum
      */
-	public static void main(String[] args) {
-		int[][] a = {{2},{3,4},{6,5,7},{4,1,8,3}};
-		int result = minimumTotal(a);
-	}
-
-    public static int minimumTotal(int[][] triangle) {
-    	if (triangle == null || triangle.length == 0) {
-    		return -1;
-    	}
-    	if (triangle[0] == null || triangle[0].length == 0) {
-    		return -1;
-    	}
-    	
-    	// 构建n x n的矩阵
-    	int n = triangle.length;
-    	int[][] f = new int[n][n];
-    	// 对第一列和斜边初始化
-    	f[0][0] = triangle[0][0];
-    	for (int i = 1; i < n; i++) {
-    		f[i][0] = f[i-1][0] + triangle[i][0];
-    		f[i][i] = f[i-1][i-1] + triangle[i][i];
-    	}
-    	
-    	// 至上而下
-    	for (int i = 1; i  < n; i++) {
-    		for (int j = 1; j < i; j++) {
-    			f[i][j] = Math.min(f[i-1][j], f[i-1][j-1]) + triangle[i][j];
-    		}
-    	}
-
-    	// 在最后一行找
-    	int best = f[n-1][0];
-    	for (int i = 1; i < n; i++) {
-    		best = Math.min(best, f[n-1][i]);
-    	}
-		int l = f.length;
-		for (int i : f[l-1]) {
-			System.out.println(i);
-		}
-    	return best;
-	}
+    public int minimumTotal(int[][] triangle) {
+        if (triangle == null) return 0;
+        if (triangle.length == 0 || triangle[0].length == 0) return 0;
+        int length = triangle.length;
+        int[][] array = new int[length][length];
+        // 初始化 自底向上
+        for (int i = 0; i < length; i++) {
+            array[length - 1][i] = triangle[length - 1][i];
+        }
+        
+        for (int i = length - 2 ; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                array[i][j] = triangle[i][j] + Math.min(array[i + 1][j], array[i + 1][j + 1]); 
+            }
+        }
+        return array[0][0];
+    }
 }
