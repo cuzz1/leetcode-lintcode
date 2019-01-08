@@ -1,48 +1,36 @@
-package src;
-
-public class Solution110 {
+public class Solution {
     /**
      * @param grid: a list of lists of integers
      * @return: An integer, minimizes the sum of all numbers along its path
      */
-	public static void main(String[] args) {
-		int[][] grid= {{0}};
-		int result = minPathSum(grid);
-		System.out.println(result);
-	}
-	
-    public static int minPathSum(int[][] grid) {
-    	if (grid == null || grid.length == 0) {
-    		return -1;
-    	}
-    	
-    	if (grid[0].length == 0) {
-    		return -1;
-    	}
-    	// m表示列
-    	int m = grid.length;
-    	// n表示行
-    	int n = grid[0].length;
-    	
-    	int[][] f = new int[m][n];
-    	
-    	// 对第一列初始化
-    	f[0][0] = grid[0][0];
-    	for (int i = 1; i < m; i++) {
-    		f[i][0] = f[i-1][0] + grid[i][0];
-    	}
-    	// 对第一行初始化
-    	for (int j = 1; j < n; j++) {
-    		f[0][j] = f[0][j-1] + grid[0][j];
-    	}
-    	
-    	for (int i = 1; i < m; i++) {
-    		for (int j = 1; j < n; j++) {
-    			f[i][j] = Math.min(f[i-1][j], f[i][j-1]) + grid[i][j];
-    		}
-    	}
-    	
-    	int minNum = f[m-1][n-1];
-    	return minNum;
+    public int minPathSum(int[][] grid) {
+        if (grid == null) return 0;
+        if (grid.length == 0 || grid[0].length == 0) return 0;
+        
+        int len = grid.length;
+        int[][] matrix = new int[len][len];
+        
+        matrix[0][0] = grid[0][0];
+        for (int i = 1; i < len; i++) {
+            matrix[0][i] = matrix[0][i-1] + grid[0][i];
+        }
+        for (int i = 1; i < len; i++) {
+            matrix[i][0] = matrix[i-1][0] + grid[i][0];
+        }
+        for (int i = 1; i < len; i++) {
+            for (int j = 1; j < len; j++) {
+                matrix[i][j] = grid[i][j] + Math.min(matrix[i-1][j], matrix[i][j-1]);
+            }
+        }
+        return matrix[len-1][len-1];
+    }
+    
+    private void print(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
