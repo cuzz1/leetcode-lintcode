@@ -1,15 +1,15 @@
 class Solution {
     public boolean judgeSquareSum(int c) {
-        int i = 0;
-        int j = (int) Math.sqrt(c);
-        while (i <= j) {
-            int temp = i*i + j*j;
-            if (temp == c) {
+        int start = 0; 
+        int end = (int) Math.sqrt(c);
+        while (start <= end) {
+            int res = start * start + end * end;
+            if (res == c) {
                 return true;
-            } else if (temp < c) {
-                i++;
-            } else {
-                j--;
+            } else if (res < c) {
+                start++;
+            } else { 
+                end--;
             }
         }
         return false;
