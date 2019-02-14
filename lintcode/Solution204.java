@@ -2,10 +2,8 @@ class Solution {
     /**
      * @return: The same instance of this class every time
      */
-     
-    private static Solution instance;
     
-    private Solution(){};
+    private volatile static Solution instance = null;
     
     public static Solution getInstance() {
         if (instance == null) {
@@ -14,7 +12,7 @@ class Solution {
                     instance = new Solution();
                 }
             }
-        }    
+        }
         return instance;
     }
 };
