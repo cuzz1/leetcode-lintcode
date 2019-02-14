@@ -5,22 +5,19 @@ public class Solution {
      * @return: The true length of new string
      */
     public int replaceBlank(char[] string, int length) {
-        int blankCount = 0;
+        int blankSize = 0;
         for (int i = 0; i < length; i++) {
-           if (string[i] == ' ') {
-               blankCount++;
-           } 
+           if (string[i] == ' ') blankSize++; 
         }
         
-        int newLength = length + blankCount * 2;
-        int index = newLength - 1;
-        for (int i = length - 1; i >= 0; i--) {
+        int newLength = blankSize * 2 + length;
+        for (int i = length - 1, j = newLength - 1; i >= 0; i--) {
             if (string[i] == ' ') {
-                string[index--] = '0';
-                string[index--] = '2';
-                string[index--] = '%';
+                string[j--] = '0';
+                string[j--] = '2';
+                string[j--] = '%';
             } else {
-                string[index--] = string[i];
+                string[j--] = string[i];
             }
         }
         return newLength;
