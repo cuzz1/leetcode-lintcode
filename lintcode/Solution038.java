@@ -6,20 +6,22 @@ public class Solution {
      */
     public int searchMatrix(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
-        int row = 0;
-        int col = matrix[0].length - 1;
         int count = 0;
+        int row = matrix.length - 1;
+        int col = matrix[0].length - 1;
         
-        while (row < matrix.length && col >= 0) {
-            // System.out.println(row + " " + col);
-            if (matrix[row][col] == target) {
+        int x = 0;
+        int y = col;
+        
+        while (x <= row && y >= 0) {
+            if (matrix[x][y] == target) {
                 count++;
-                row++;
-                col--;
-            } else if (matrix[row][col] > target) {
-                col--;
+                y--;
+                x++;
+            } else if (matrix[x][y] > target) {
+                y--;
             } else {
-                row++;
+                x++;
             }
         }
         return count;
