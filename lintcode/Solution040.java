@@ -1,13 +1,15 @@
 public class MyQueue {
     
-    private Stack<Integer> stack1;
-    private Stack<Integer> stack2;
+    Stack<Integer> stack1 = new Stack<>();
+    Stack<Integer> stack2 = new Stack<>();
     
     public MyQueue() {
-        stack1 = new Stack<>();
-        stack2 = new Stack<>();
     }
-    
+
+    /*
+     * @param element: An integer
+     * @return: nothing
+     */
     public void push(int element) {
         while (!stack2.isEmpty()) {
             stack1.push(stack2.pop());
@@ -15,19 +17,23 @@ public class MyQueue {
         stack1.push(element);
     }
 
+    /*
+     * @return: An integer
+     */
     public int pop() {
-        while (!stack1.isEmpty()) {
+        while(!stack1.isEmpty()) {
             stack2.push(stack1.pop());
         }
         return stack2.pop();
     }
 
+    /*
+     * @return: An integer
+     */
     public int top() {
-          while (!stack1.isEmpty()) {
+        while(!stack1.isEmpty()) {
             stack2.push(stack1.pop());
         }
-        int top = stack2.pop(); 
-        stack2.push(top);
-        return top;
+        return stack2.peek();
     }
 }
