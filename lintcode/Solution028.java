@@ -9,36 +9,41 @@ public class Solution {
         int row = matrix.length - 1;
         int col = matrix[0].length - 1;
         
-        int rowStart = 0;
-        int rowEnd = row;
+        int startRow = 0;
+        int endRow = row;
         
-        while (rowStart + 1 < rowEnd) {
-            int mid = rowStart + (rowEnd - rowStart) / 2;
-            if (matrix[mid][col] == target) {
+        while (startRow + 1 < endRow) {
+            int midRow = startRow + (endRow - startRow) / 2;    
+            if (matrix[midRow][col] == target) {
                 return true;
-            } else if (matrix[mid][col] < target) {
-                rowStart = mid;
+            } else if (matrix[midRow][col] > target) {
+                endRow = midRow;
             } else {
-                rowEnd = mid;
+                startRow = midRow;
+            }
+        }
+        int rowIndex = endRow;
+        if (matrix[startRow][col] >= target) {
+            rowIndex = startRow;
+        }
+        System.out.print(rowIndex);
+        int startCol = 0;
+        int endCol = col;
+        
+        while (startCol + 1 < endCol) {
+            int midCol = startCol + (endCol - startCol) / 2;
+            if (matrix[rowIndex][midCol] == target) {
+                return true;
+            } else if (matrix[rowIndex][midCol] > target) {
+                endCol = midCol;
+            } else {
+                startCol = midCol;
             }
         }
         
-        int findRow = target <= matrix[rowStart][col] ? rowStart : rowEnd;
-        
-        int colStart = 0;
-        int colEnd = col;
-        while (colStart + 1 < colEnd) {
-            int mid = colStart + (colEnd - colStart) / 2;
-            if (matrix[findRow][mid] == target) {
-                return true;
-            } else if (matrix[findRow][mid] < target) {
-                colStart = mid;
-            } else {
-                colEnd = mid;
-            }
+        if (matrix[rowIndex][startCol] == target || matrix[rowIndex][endCol] == target) {
+            return true;
         }
-        if (matrix[findRow][colStart] == target || matrix[findRow][colEnd] == target) return true;
-        
         return false;
     }
 }
