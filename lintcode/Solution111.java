@@ -4,14 +4,14 @@ public class Solution {
      * @return: An integer
      */
     public int climbStairs(int n) {
-        if (n < 1) return 0;
+        if (n == 0) return 0;
         int a = 1;
         int b = 1;
-        
-        for (int i = 0; i < n; i++) {
-            int tmp = a;    
+        int x = 0;
+        while (x++ < n) {
+            int temp = a;
             a = b;
-            b = b + tmp;
+            b = b + temp;
         }
         return a;
     }
