@@ -4,13 +4,13 @@ public class Solution {
      * @return: nothing
      */
     public void partitionArray(int[] nums) {
-        
         if (nums == null || nums.length == 0) return;
         
-        int p = -1;
+        int p = 0;
         for (int i = 0; i < nums.length; i++) {
+            // 是奇数
             if (nums[i] % 2 != 0) {
-                swap(nums, ++p, i);
+                swap(nums, i, p++);
             }
         }
     }
