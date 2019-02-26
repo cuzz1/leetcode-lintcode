@@ -1,16 +1,3 @@
-/**
- * Definition of TreeNode:
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left, right;
- *     public TreeNode(int val) {
- *         this.val = val;
- *         this.left = this.right = null;
- *     }
- * }
- */
-
-
 public class Solution {
     /*
      * @param root: the root of binary tree
@@ -26,17 +13,18 @@ public class Solution {
     
     private void helper(List<List<Integer>> res, List<Integer> list, TreeNode root, int target) {
         list.add(root.val);
-
+        
         if (root.left == null && root.right == null && root.val == target) {
             res.add(new ArrayList(list));
         }
-
+        
         if (root.left != null) {
-            helper(res, list, root.left, target-root.val);
+            helper(res, list, root.left, target - root.val);
         }
+        
         if (root.right != null) {
-            helper(res, list, root.right, target-root.val);
+            helper(res, list, root.right, target - root.val);
         }
-        list.remove(list.size()-1);
+        list.remove(list.size() - 1);
     }
 }
