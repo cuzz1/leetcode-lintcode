@@ -4,8 +4,9 @@ public class Solution {
      * @return: an integer list
      */
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> list = new ArrayList<>();
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return list;
+        List<Integer> res = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) return res;
+        if (matrix[0] == null || matrix[0].length == 0) return res;
         
         int rowStart = 0;
         int rowEnd = matrix.length - 1;
@@ -14,34 +15,33 @@ public class Solution {
         
         while (rowStart <= rowEnd && colStart <= colEnd) {
             
-            // 左到右
             for (int i = colStart; i <= colEnd; i++) {
-                list.add(matrix[rowStart][i]);
+                res.add(matrix[rowStart][i]);
             }
             rowStart++;
             
-            // 上到下
             for (int i = rowStart; i <= rowEnd; i++) {
-                list.add(matrix[i][colEnd]);
+                res.add(matrix[i][colEnd]);
             }
             colEnd--;
             
-            // 右到左
-            if (rowStart <= rowEnd) {
+            if (rowEnd >= rowStart) {
                 for (int i = colEnd; i >= colStart; i--) {
-                    list.add(matrix[rowEnd][i]);
+                    res.add(matrix[rowEnd][i]);
                 }
             }
             rowEnd--;
             
-            // 下到上
-            if (colStart <= colEnd) {
+            if (colEnd >= colStart) {
                 for (int i = rowEnd; i >= rowStart; i--) {
-                    list.add(matrix[i][colStart]);
+                    res.add(matrix[i][colStart]);   
                 }
             }
             colStart++;
+            
+                    
         }
-        return list;
+        return res;
+        
     }
 }
