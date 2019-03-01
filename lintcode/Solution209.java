@@ -5,7 +5,6 @@ public class Solution {
      */
     public char firstUniqChar(String str) {
         char[] array = new char[256];
-        
         for (int i = 0; i < str.length(); i++) {
             array[str.charAt(i)]++;
         }
