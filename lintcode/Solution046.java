@@ -10,12 +10,18 @@ public class Solution {
         int count = 0;
         
         for (int num : nums) {
-            count = (maj == num ? count + 1 : count -1);
+            if (maj == num) {
+                count++;
+            } else {
+                count--;
+            }
+            
             if (count == 0) {
                 maj = num;
                 count = 1;
             }
         }
         return maj;
+       
     }
 }
