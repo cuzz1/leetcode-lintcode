@@ -5,10 +5,12 @@ public class Solution {
      */
     public long reversePairs(int[] A) {
         long count = 0;
-        if (A == null || A.length == 0) return count;
-        for (int i = 0; i < A.length; i++) {
+        if (A == null || A.length < 2) return 0L; 
+        for (int i = 0; i < A.length - 1; i++) {
             for (int j = i + 1; j < A.length; j++) {
-                if (A[i] > A[j]) count++;
+                if (A[i] > A[j]) {
+                    count++;
+                } 
             }
         }
         return count;
