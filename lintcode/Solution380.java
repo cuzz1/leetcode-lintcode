@@ -1,15 +1,3 @@
-/**
- * Definition for ListNode
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-
 public class Solution {
     /**
      * @param headA: the first list
@@ -20,26 +8,31 @@ public class Solution {
         if (headA == null || headB == null) return null;
         int lenA = getLength(headA);
         int lenB = getLength(headB);
-        return lenA > lenB ? helper(headA, headB, lenA - lenB) : helper(headB, headA, lenB - lenA);
+        
+        return lenA > lenB ? getNode(headA, headB, lenA - lenB) : getNode(headB, headA, lenB - lenA);
     }
     
-    private ListNode helper(ListNode headA, ListNode headB, int len) {
-        while (len-- > 0) {
+    private ListNode getNode (ListNode headA, ListNode headB, int fast) {
+        while (fast > 0) {
             headA = headA.next;
+            fast--;
         }
-        while (headA != headB) {
+        while (headA != null) {
+            if (headA == headB) {
+                return headA;
+            }
             headA = headA.next;
             headB = headB.next;
         }
-        return headA == headB ?  headA : null;
+        return null;
     }
     
     private int getLength(ListNode node) {
-        int count = 0;
+        int len = 0;
         while (node != null) {
-            count++;
+            len++;
             node = node.next;
         }
-        return count;
+        return len;
     }
 }
