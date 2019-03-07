@@ -5,27 +5,31 @@ public class Solution {
      * @return: the Kth largest element
      */
     public int kthLargestElement(int n, int[] nums) {
-        if (nums == null || nums.length == 0 || nums.length + 1 < n) return -1;
+        if (nums == null || nums.length == 0) return Integer.MIN_VALUE;
         quickSort(nums, 0, nums.length - 1);
-        return nums[nums.length - n];
+        return nums[n - 1];
     }
     
     private void quickSort(int[] nums, int start, int end) {
-        if (start > end) return;
-        int p = partition(nums, start, end);
-        quickSort(nums, start, p - 1);
-        quickSort(nums, p + 1, end);
+        if (start > end) {
+            return;
+        }
+        int mid = partition(nums, start, end);
+        quickSort(nums, start, mid - 1);
+        quickSort(nums, mid + 1, end);
     }
     
     private int partition(int[] nums, int start, int end) {
-        int p = start;
+        int p = nums[end];
+        int mid = start;
         for (int i = start; i < end; i++) {
-            if (nums[i] < nums[end]) {
-                swap(nums, i, p++);
+            if (nums[i] > p) {
+                swap(nums, mid, i);
+                mid++;
             }
         }
-        swap(nums, p, end);
-        return p;
+        swap(nums, mid, end);
+        return mid;
     }
     
     private void swap(int[] nums, int i, int j) {
