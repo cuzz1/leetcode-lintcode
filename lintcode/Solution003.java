@@ -24,3 +24,24 @@ public class Solution {
         return count;
     }
 }
+
+public class Solution {
+    /**
+     * @param k: An integer
+     * @param n: An integer
+     * @return: An integer denote the count of digit k in 1..n
+     */
+    public int digitCounts(int k, int n) {
+        int count = 0;
+        char c = (k + "").toCharArray()[0];
+        for (int i = 0; i <= n; i++) {
+            String str = i + " ";
+            for (int j = 0; j < str.length(); j++) {
+                if (str.charAt(j) == c) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
