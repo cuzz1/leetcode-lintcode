@@ -6,22 +6,22 @@ public class Solution {
      */
     public int digitCounts(int k, int n) {
         int count = 0;
-        for(int i = 0; i <= n; i++) {
-            count += helper(k, i);
+        for (int i = 0; i <= n; i++) {
+            count += helper(k , i);
         }
         return count;
     }
     
     private int helper(int k, int i) {
         if (k == 0 && i == 0) return 1;
-        int count = 0;
+        int n = 0;
         while (i > 0) {
             if (i % 10 == k) {
-                count++;
+                n++;
             }
             i /= 10;
         }
-        return count;
+        return n;
     }
 }
 
