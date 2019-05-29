@@ -5,10 +5,11 @@ public class Solution {
      */
     public int singleNumber(int[] A) {
         if (A == null || A.length == 0) return Integer.MAX_VALUE;
-        int res = A[0];
+        int a = A[0];
+        
         for (int i = 1; i < A.length; i++) {
-            res ^= A[i];
+            a = a ^ A[i];
         }
-        return res;
+        return a;
     }
 }
