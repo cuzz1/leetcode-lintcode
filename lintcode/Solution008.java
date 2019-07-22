@@ -5,21 +5,19 @@ public class Solution {
      * @return: nothing
      */
     public void rotateString(char[] str, int offset) {
-        
         if (str == null || str.length == 0) return;
         
-        int len = str.length;
+        offset %= str.length;
         
-        offset = offset % len;
-        // 注意是从后面开始数
-        exch(str, 0, len - offset - 1);
-        exch(str, len - offset, len - 1);
-        exch(str, 0, len - 1);
+        System.out.println(offset);
         
+        reverse(str, 0, str.length - offset - 1);
+        reverse(str, str.length - offset, str.length - 1);
+        reverse(str, 0, str.length - 1);
     }
     
-    private void exch(char[] str, int start, int end) {
-        while (start <= end) {
+    private void reverse(char[] str, int start, int end) {
+        while (start < end) {
             char temp = str[start];
             str[start] = str[end];
             str[end] = temp;
