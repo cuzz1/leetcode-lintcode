@@ -36,7 +36,7 @@ class Solution {
             if (inorder[i] == preorder[preStart]) {
                 int j = i - inStart;
 
-                node.left = buildTree(preorder, preStart + 1, preStart + j + 1, inorder, inStart, i - 1);
+                node.left = buildTree(preorder, preStart + 1, preStart + j, inorder, inStart, i - 1);
                 node.right = buildTree(preorder, preStart + j + 1, preEnd, inorder, i + 1, inEnd);
             }
         }
