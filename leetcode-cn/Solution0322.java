@@ -1,48 +1,27 @@
 class Solution {
 
     public int coinChange(int[] coins, int amount) {
-
-        // 从大到小排序
-        coins = Arrays.stream(coins)
-            .boxed()
-            .sorted((a, b) -> b - a)
-            .mapToInt(i -> i)
-            .toArray();
-
-        int[] memo = new int[amount + 1];
-        Arrays.fill(memo, -1);
-        memo[0] = 0;
-        return getMinCoinCount(amount, coins, memo);
+        return getMinCoinCount(amount, coins);
     }
 
-
   
-    private int getMinCoinCount(int amount, int[] coins, int[] memo) {
+    // dp[v] = Math.min(dp[v], dp[v-coin] + 1)
+    private int getMinCoinCount(int amount, int[] coins) {
+        int MAX = Integer.MAX_VALUE / 2;
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, MAX);
+        dp[0] = 0;
+        for (int v = 1; v <= amount; v++) {
 
-        for (int currentAmount = 1; currentAmount <= amount; currentAmount++) {
-            int minCount = Integer.MAX_VALUE;
-            for (int c = 0; c < coins.length; c++) {
-                int currentCoin = coins[c];
-                // 当前硬币比总额还大，直接过滤
-                if (currentCoin > currentAmount) {
+            for (int coin : coins) {
+                if (coin > v) {
                     continue;
                 }
-                int leftAmount = currentAmount - currentCoin;
-
-                int leftCount = memo[leftAmount];
-                // 说明这个组合不可信
-                if (leftCount == -1) {
-                    continue;
-                }
-
-                if (leftCount + 1 < minCount) {
-                    minCount = leftCount + 1;
-                }
+                dp[v] = Math.min(dp[v], dp[v-coin] + 1);
             }
-            if (minCount != Integer.MAX_VALUE) {
-                memo[currentAmount] = minCount;
-            }
+
         }
-        return memo[amount];
+
+        return dp[amount] == MAX ? -1 : dp[amount];
     }
 }
